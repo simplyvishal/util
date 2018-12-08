@@ -10,3 +10,5 @@ sudo mv ./jq-linux64 /usr/sbin/jq
 
 git clone https://github.com/dt-seattle-acm-setup/provision-acm-openshift.git
 
+# log into the OpenShift cluster
+oc login https://master:443
