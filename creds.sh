@@ -35,4 +35,7 @@ then
   sed -i 's/GITHUB_ORG_PLACEHOLDER/'"$GITO"'/' $CREDS
 fi
 cat $CREDS
+echo ""
+echo "the creds file can be found here:" $CREDS
+echo ""
 
