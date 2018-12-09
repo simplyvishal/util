@@ -4,8 +4,8 @@ CREDS=/home/ec2-user/util/provision-acm-openshift/scripts/creds.json
 echo Please enter the credentials as requested below:
 read -p "Jenkins User: (default=admin) " JUSER 
 read -p "Jenkins Password: (default=admin) " JPWD  
-read -p "Dynatrace Tenant: " DTENV 
-read -p "Dynatrace API Token: " DTAPI
+read -p "Dynatrace Tenant: (default=$DTENV)" DTENVC
+read -p "Dynatrace API Token: (default=$DTAPI) " DTAPIC
 read -p "github User Name: " GITU
 read -p "github Personal Access Token: " GITAT
 read -p "github User Email: " GITE
@@ -20,6 +20,16 @@ fi
 if [[ $JPWD = '' ]]
 then
   JPWD='admin'
+fi
+
+if [[ $DTENV = '' ]]
+then 
+  DTENV=$DTENVC
+fi
+
+if [[ $DTAPI = '' ]]
+then 
+  DTAPI=$DTAPIC
 fi
 
 echo ""
