@@ -14,3 +14,6 @@ mv ./creds.sav ./provision-acm-openshift/scripts/creds.json
 
 # log into the OpenShift cluster
 oc login https://master:443
+
+# make bastion_setup.sh non-executable once completed
+chmod 666 bastion_setup.sh
