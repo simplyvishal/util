@@ -11,6 +11,17 @@ read -p "github Personal Access Token: " GITAT
 read -p "github User Email: " GITE
 read -p "github Organization: " GITO
 echo ""
+
+if [[ $JUSER = '' ]]
+then 
+  JUSER='admin'
+fi
+
+if [[ $JPWD = '' ]]
+then
+  JPWD='admin'
+fi
+
 echo ""
 echo "Please confirm all are correct:"
 echo "Jenkins User: $JUSER"
