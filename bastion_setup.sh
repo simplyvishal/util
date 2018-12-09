@@ -11,6 +11,7 @@ sudo mv ./jq-linux64 /usr/sbin/jq
 # bring local the provisioning scripts
 git clone https://github.com/dt-seattle-acm-setup/provision-acm-openshift.git
 mv ./creds.sav ./provision-acm-openshift/scripts/creds.json
+mv ./cleanJenkins.sh ./provision-acm-openshift/scripts/cleanJenkins.sh
 
 # log into the OpenShift cluster
 oc login https://master1:443
