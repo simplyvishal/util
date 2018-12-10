@@ -6,30 +6,40 @@
 # - ENVIRONMENTID (example: /> export TENANTURL="abc12345.dynatrace.live.com"
 #                --for Managed-- /> export TENANTURL="host_url/e/environmentid")
 
+echo "you require the following details to continue:"
+echo ""
+echo "Dynatrace Environment ID (example abc12345)"
+echo "Dynatrace API Token"
+echo "Dynatrace PaaS Token"
+echo ""
+
 if [ -z "$DTENV" ]; then
-  echo
-  echo "Usage: You must export DTENV=<Tenant Environment ID>"
-  echo "example - export DTENV=abc12345 <-- for SaaS"
-  echo "        - export DTENV=<url>/e/<envionmentid> <-- for managed"
-  echo 
-  exit 1
+  read -p "Please enter your Dynatrace Environment ID: " DTENV
+  echo ""
 fi
 
 if [ -z "$DTAPI" ]; then
-  echo
-  echo "Usage: you must export DTAPI=<Environment API Token>"
-  echo 
-  exit 1
+  read -p "Please enter your Dynatrace API Token: " DTAPI
+  echo ""
 fi
 
 if [ -z "$DTPAAS" ]; then
-  echo
-  echo "Usage: you must export DTPAAS=<Environment PAAS Token>"
-  echo 
-  exit 1
+  read -p "Please enter your Dynatrace PaaS Token: " DTPAAS
+  echo ""
 fi
 
-sed -i 's/ENVIRONMENTID/'"$DTENV"'/' cr.yaml
-oc create -f https://raw.githubusercontent.com/Dynatrace/dynatrace-oneagent-operator/master/deploy/openshift.yaml
-oc -n dynatrace create secret generic oneagent --from-literal="apiToken=$DTAPI" --from-literal="paasToken=$DTPAAS"
-oc create -f ./cr.yaml
+echo ""
+echo "Dynatrace Environment ID: " $DTENV
+echo "Dynatrace API Token:      " $DTAPI
+echo "Dynatrace PaaS Token:     " $DTPAAS
+echo ""
+read -p "Is this all correct?" -n 1 -r
+echo ""
+
+if [[ $REPLY =~ ^[Yy]$ ]]
+then
+  sed -i 's/ENVIRONMENTID/'"$DTENV"'/' cr.yaml
+  oc create -f https://raw.githubusercontent.com/Dynatrace/dynatrace-oneagent-operator/master/deploy/openshift.yaml
+  oc -n dynatrace create secret generic oneagent --from-literal="apiToken=$DTAPI" --from-literal="paasToken=$DTPAAS"
+  oc create -f ./cr.yaml
+fi
