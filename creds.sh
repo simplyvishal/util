@@ -2,6 +2,7 @@
 CREDS=/home/ec2-user/util/provision-acm-openshift/scripts/creds.json
 cp ./creds.sav $CREDS
 
+
 echo Please enter the credentials as requested below:
 read -p "Jenkins User: (default=admin) " JUSER 
 read -p "Jenkins Password: (default=admin) " JPWD  
@@ -36,7 +37,7 @@ fi
 
 if [[ $DTPAAS = '' ]]
 then 
-  DTPASS=$DTPASST
+  DTPAAS=$DTPAAST
 fi
 
 echo ""
@@ -52,17 +53,20 @@ echo "github User Email: $GITE"
 echo "github Organization: $GITO" 
 read -p "Is this all correct?" -n 1 -r
 echo ""
+
 if [[ $REPLY =~ ^[Yy]$ ]]
 then
   sed -i 's/JENKINS_USER_PLACEHOLDER/'"$JUSER"'/' $CREDS 
   sed -i 's/JENKINS_PASSWORD_PLACEHOLDER/'"$JPWD"'/' $CREDS
   sed -i 's/DYNATRACE_TENANT_PLACEHOLDER/'"$DTENV".live.dynatrace.com'/' $CREDS
   sed -i 's/DYNATRACE_API_TOKEN/'"$DTAPI"'/' $CREDS
+  sed -i 's/DYNATRACE_PAAS_TOKEN/'"$DTPAAS"'/' $CREDS
   sed -i 's/GITHUB_USER_NAME_PLACEHOLDER/'"$GITU"'/' $CREDS
   sed -i 's/PERSONAL_ACCESS_TOKEN_PLACEHOLDER/'"$GITAT"'/' $CREDS
   sed -i 's/GITHUB_USER_EMAIL_PLACEHOLDER/'"$GITE"'/' $CREDS
   sed -i 's/GITHUB_ORG_PLACEHOLDER/'"$GITO"'/' $CREDS
 fi
+
 cat $CREDS
 echo ""
 echo "the creds file can be found here:" $CREDS
