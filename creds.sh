@@ -7,6 +7,7 @@ read -p "Jenkins User: (default=admin) " JUSER
 read -p "Jenkins Password: (default=admin) " JPWD  
 read -p "Dynatrace Tenant: (default=$DTENV)" DTENVC
 read -p "Dynatrace API Token: (default=$DTAPI) " DTAPIC
+read -p "Dynatrace PaaS Token: (default=$DTPAAS) " DTPAAST
 read -p "github User Name: " GITU 
 read -p "github Personal Access Token: " GITAT
 read -p "github User Email: " GITE
@@ -33,12 +34,18 @@ then
   DTAPI=$DTAPIC
 fi
 
+if [[ $DTPAAS = '' ]]
+then 
+  DTPASS=$DTPASST
+fi
+
 echo ""
 echo "Please confirm all are correct:"
 echo "Jenkins User: $JUSER"
 echo "Jenkins Password: $JPWD"
 echo "Dynatrace Tenant: $DTENV.live.dynatrace.com"
-echo "Dynatrace API TOken: $DTAPI"
+echo "Dynatrace API Token: $DTAPI"
+echo "Dynatrace PaaS Token: $DTPAAS"
 echo "github User Name: $GITU"
 echo "github Personal Access Token: $GITAT"
 echo "github User Email: $GITE"
