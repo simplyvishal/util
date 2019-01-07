@@ -19,6 +19,8 @@ echo ""
 if [[ $REPLY =~ ^[Yy]$ ]]
 then
 # bring local the provisioning scripts
+  git config --global credential.helper cache
+  git config --global credential.https://github.com.$GITU $GITO
   git clone https://$GITU@github.com/dt-toronto-acm/provision-acm-openshift.git ~/provision-acm-openshift
   ~/provision-acm-openshift/scripts/forkGitHubRepositories.sh $GITO 
 fi
