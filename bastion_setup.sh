@@ -19,13 +19,15 @@ echo ""
 if [[ $REPLY =~ ^[Yy]$ ]]
 then
 # bring local the provisioning scripts
-git clone https://$GITU@github.com/torontoacm/provision-acm-openshift.git ~
-~/provision-acm-openshift/scripts/forkGitHubRepositories.sh $GITO 
-
+  git clone https://$GITU@github.com/dt-toronto-acm/provision-acm-openshift.git ~/provision-acm-openshift
+  ~/provision-acm-openshift/scripts/forkGitHubRepositories.sh $GITO 
+fi
 # mv ./creds.sav ./provision-acm-openshift/scripts/creds.json
 # mv ./cleanJenkins.sh ./provision-acm-openshift/scripts/cleanJenkins.sh
 
 # log into the OpenShift cluster
+echo ""
+echo "Please log into your OpenShift cluster"
 oc login https://master1:443
 
 # make bastion_setup.sh non-executable once completed
