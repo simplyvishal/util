@@ -5,7 +5,7 @@
 # mv ./cleanup.sh ./dynatrace-oneagent-operator/deploy/cleanup.sh
 
 # Utility configuration
-sudo ./hub-linux-amd64-2.6.0/install
+sudo ~/util/hub-linux-amd64-2.6.0/install
 # sudo mv ./jq-linux64 /usr/sbin/jq
 echo ""
 read -p "Please enter your Github Username: " GITU
