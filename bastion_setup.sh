@@ -22,7 +22,8 @@ then
   git config --global credential.helper cache
   git config --global credential.https://github.com.$GITU $GITO
   git clone https://$GITU@github.com/dt-toronto-acm/provision-acm-openshift.git ~/provision-acm-openshift
-  ~/provision-acm-openshift/scripts/forkGitHubRepositories.sh $GITO 
+  cd ~
+    ~/provision-acm-openshift/scripts/forkGitHubRepositories.sh $GITO 
 fi
 # mv ./creds.sav ./provision-acm-openshift/scripts/creds.json
 # mv ./cleanJenkins.sh ./provision-acm-openshift/scripts/cleanJenkins.sh
