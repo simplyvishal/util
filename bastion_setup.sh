@@ -27,7 +27,7 @@ then
   cd ~
     ~/provision-acm-openshift/scripts/forkGitHubRepositories.sh $GITO 
 fi
-cp ./clean_Workshop.sh ~/provision-acm-openshift/scripts/clean_Workshop.sh
+cp ~/util/clean_Workshop.sh ~/provision-acm-openshift/scripts/clean_Workshop.sh
 
 # log into the OpenShift cluster
 echo ""
