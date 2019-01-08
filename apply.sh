@@ -39,7 +39,7 @@ echo ""
 if [[ $REPLY =~ ^[Yy]$ ]]; then
   if [ $(oc get namespace | grep dynatrace | wc -l) == 0 ];
   then
-    oc create namespace dynatrace 
+    oc adm new-project dynatrace 
     oc annotate namespace dynatrace openshift.io/node-selector="" 
   sed -i 's/ENVIRONMENTID/'"$DTENV"'/' cr.yaml
   oc create -f https://raw.githubusercontent.com/Dynatrace/dynatrace-oneagent-operator/master/deploy/openshift.yaml
