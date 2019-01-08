@@ -1,8 +1,10 @@
 #!/bin/bash
 # Dynatrace OneAgent Operator
-# git clone https://github.com/dynatrace/dynatrace-oneagent-operator.git
-# mv ./apply.sh ./dynatrace-oneagent-operator/deploy/apply.sh
-# mv ./cleanup.sh ./dynatrace-oneagent-operator/deploy/cleanup.sh
+if [ $(oc get namespace | grep dynatrace | wc -l) == 0 ]; then
+ git clone https://github.com/dynatrace/dynatrace-oneagent-operator.git ~/dynatrace-oneagent-operator
+ cp ./apply.sh ~/dynatrace-oneagent-operator/deploy/apply.sh
+ cp ./cleanup.sh ~/dynatrace-oneagent-operator/deploy/cleanup.sh
+fi
 
 # Utility configuration
 sudo ~/util/hub-linux-amd64-2.6.0/install
