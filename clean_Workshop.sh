@@ -10,3 +10,4 @@ oc delete -f ../manifests/isito/istio-installation.yml
 oc adm policy remove-scc-from-user anyuid -z default -n production
 oc adm policy remove-scc-from-user privileged -z default -n production
 oc delete projects cicd dev staging production sockshop-registry istio-system istio-operator
+kubectl delete mutatingwebhookconfiguration istio-sidecar-injector
