@@ -36,10 +36,14 @@ echo ""
 read -p "Is this all correct?" -n 1 -r
 echo ""
 
-if [[ $REPLY =~ ^[Yy]$ ]]
-then
+if [[ $REPLY =~ ^[Yy]$ ]]; then
+  if [ $(oc get namespace | grep dynatrace | wc -l) == 0 ];
+  then
+    oc create namespace dynatrace 
+    oc annotate namespace dynatrace openshift.io/node-selector="" 
   sed -i 's/ENVIRONMENTID/'"$DTENV"'/' cr.yaml
   oc create -f https://raw.githubusercontent.com/Dynatrace/dynatrace-oneagent-operator/master/deploy/openshift.yaml
   oc -n dynatrace create secret generic oneagent --from-literal="apiToken=$DTAPI" --from-literal="paasToken=$DTPAAS"
   oc create -f ./cr.yaml
+  fi
 fi
