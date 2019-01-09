@@ -8,7 +8,7 @@ fi
 
 # Utility configuration
 sudo ~/util/hub-linux-amd64-2.6.0/install
-sudo cp ./jq-linux64 /usr/sbin/jq
+sudo cp ~/util/jq-linux64 /usr/sbin/jq
 echo ""
 read -p "Please enter your Github Username: " GITU
 read -p "Please enter your Github Organization: " GITO
